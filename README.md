@@ -15,6 +15,7 @@ There are also some PHP classes for building the messages to be sent. Instead of
 This is still a work in progress, but is already functional.
 
 To get started, you need to create a Page in Facebook, as well as an App. Follow these steps:
+
 1. Create a new Page in Facebook (or you can use one you already have)
 2. Add a new App in https://developers.facebook.com/
 3. In "Products", you need to add "Messenger"
