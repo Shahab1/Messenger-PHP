@@ -14,6 +14,8 @@ There are also some PHP classes for building the messages to be sent. Instead of
 
 This is still a work in progress, but is already functional.
 
+## Getting started
+
 To get started, you need to create a Page in Facebook, as well as an App. Follow these steps:
 
 1. Create a new Page in Facebook (or you can use one you already have)
@@ -24,6 +26,15 @@ To get started, you need to create a Page in Facebook, as well as an App. Follow
 6. In your PHP script, put both Page Access and Verify tokens in the $config array used when initializing the class.
 7. Verify and Save, and if all is well, you should get a green tick. If not, check your web server log, or the generated debug log.
 8. Subscribe your webhook to your Page events by selecting it below and clicking **Subscribe**
+
+## Session handling
+
+Session handling is important when you need to take different actions depending on your bot state.
+The standard PHP session functions are used internally. However, as Facebook doesn't send or handles cookies, we need a different approach. Before calling **session_start()**, a custom session_id is crafted, based on the user's Facebook ID, to make sure it's unique.
+The class implements 2 methods for setting and getting a value. Use $this->setSession($key, $val) to set a session variable, and $this->getSession($key) to get the value associated with a key.
+
+
+## To-Do list
 
 Some much needed stuff that needs to be done:
 * Better class documentation, with examples.
