@@ -13,7 +13,7 @@ class Button {
         $this->type = $type;
         $this->title = $title;
         if ($type == 'web_url'):
-            if (!filter_var($pauload, FILTER_VALIDATE_URL)) throw new Exception('Invalid URL');
+            if (!filter_var($payload, FILTER_VALIDATE_URL)) throw new Exception('Invalid URL');
             $this->url = $payload;
         else:
             if (empty($payload)) throw new Exception('Empty payload');
