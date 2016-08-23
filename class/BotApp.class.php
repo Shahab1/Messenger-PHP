@@ -22,6 +22,7 @@ class BotApp {
     private $session;
     private $json;
     private $request;
+    private $sender_id;
 
 
     public function __construct(array $config) {
@@ -46,8 +47,8 @@ class BotApp {
         endif;
 
         // Manual session management - they don't give cookies :(
-        $sender_id = $this->request->entry[0]->messaging[0]->sender->id; //FIXME: Messy, messy code
-        session_id(get_class($this).$sender_id);
+        $this->sender_id = $this->request->entry[0]->messaging[0]->sender->id; //FIXME: Messy, messy code
+        session_id(get_class($this).$this->sender_id);
         session_start();
         $this->session = $_SESSION;
         if (empty($this->session)):
@@ -176,11 +177,11 @@ class BotApp {
 
 
     /* content can be a string or an Attachment object */
-    public function sendQuickReply($recipient, $content, $quick_replies) {
+    public function sendQuickReply($content, $quick_replies) {
 
         $obj = new StdClass();
         $obj->recipient = new StdClass();
-        $obj->recipient->id = $recipient;
+        $obj->recipient->id = $this->sender_id;
         $obj->message = new StdClass();
         if ($content instanceof Attachment):
             $obj->message->attachment = $content;
@@ -195,11 +196,11 @@ class BotApp {
     } // sendQuickReply
 
 
-    public function sendText($recipient, $txt) {
+    public function sendText($txt) {
 
         $obj = new StdClass();
         $obj->recipient = new StdClass();
-        $obj->recipient->id = $recipient;
+        $obj->recipient->id = $this->sender_id;
         $obj->message = new StdClass();
         $obj->message->text = $txt;
         $json = json_encode($obj);
@@ -209,11 +210,11 @@ class BotApp {
     } // sendText
 
 
-    public function sendTemplate($recipient, Template $template) {
+    public function sendTemplate(Template $template) {
 
         $obj = new StdClass();
         $obj->recipient = new StdClass();
-        $obj->recipient->id = $recipient;
+        $obj->recipient->id = $this->sender_id;
         $obj->message = new StdClass();
         $obj->message->attachment = new Attachment(
             'template',
@@ -226,11 +227,11 @@ class BotApp {
     } // sendTemplate
 
 
-    public function sendAttachment($recipient, Attachment $att) {
+    public function sendAttachment(Attachment $att) {
 
         $obj = new StdClass();
         $obj->recipient = new StdClass();
-        $obj->recipient->id = $recipient;
+        $obj->recipient->id = $this->sender_id;
         $obj->message = new StdClass();
         $obj->message->attachment = $att;
         $json = json_encode($obj);
@@ -240,34 +241,34 @@ class BotApp {
     } // sendAttachment
 
 
-    public function sendFile($recipient, $url) {
+    public function sendFile($url) {
 
         $att = new Attachment('file', new Payload($url));
-        $this->sendAttachment($recipient, $att);
+        $this->sendAttachment($att);
 
     } // sendFile
 
 
-    public function sendAudio($recipient, $url) {
+    public function sendAudio($url) {
 
         $att = new Attachment('audio', new Payload($url));
-        $this->sendAttachment($recipient, $att);
+        $this->sendAttachment($att);
 
     } // sendAudio
 
 
-    public function sendVideo($recipient, $url) {
+    public function sendVideo($url) {
 
         $att = new Attachment('video', new Payload($url));
-        $this->sendAttachment($recipient, $att);
+        $this->sendAttachment($att);
 
     } // sendVideo
 
 
-    public function sendImage($recipient, $url) {
+    public function sendImage($url) {
 
         $att = new Attachment('image', new Payload($url));
-        $this->sendAttachment($recipient, $att);
+        $this->sendAttachment($att);
 
     } // sendImage
 
