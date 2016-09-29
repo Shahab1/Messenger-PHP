@@ -10,14 +10,13 @@ class TestBot extends BotApp {
         // These are just examples of how to send different types of messages
 
         // Simple text
-        $this->sendText($msg->sender->id, 'Hello World of Bots!');
+        $this->sendText('Hello World of Bots!');
 
         // Simple image (use sendVideo(), sendAudio() and sendFile() for videos, audios and files)
-        $this->sendImage($msg->sender->id, 'https://example.com/image.jpg');
+        $this->sendImage('https://example.com/image.jpg');
 
         // Button template: https://developers.facebook.com/docs/messenger-platform/send-api-reference/button-template
         $this->sendTemplate(
-            $msg->sender->id,
             new ButtonTemplate(
                 'Please press one of the buttons below.',
                 array(
@@ -30,7 +29,6 @@ class TestBot extends BotApp {
 
         // Generic Template: https://developers.facebook.com/docs/messenger-platform/send-api-reference/generic-template
         $this->sendTemplate(
-            $msg->sender->id,
             new GenericTemplate(
                 new Element(
                     'Title here',
@@ -47,7 +45,6 @@ class TestBot extends BotApp {
 
         // Quick Replies: https://developers.facebook.com/docs/messenger-platform/send-api-reference/quick-replies
         $this->sendQuickReply(
-            $msg->sender->id,
             new Attachment('image', new Payload('http://example.com/image.jpg')),
             array(
                 new QuickReply('Option 1', 'OPT_1'),
@@ -64,10 +61,10 @@ class TestBot extends BotApp {
     public function receivedPostback($msg) {
         switch ($msg->postback->payload):
         case 'BUTTON_1':
-            $this->sendText($msg->sender->id, 'You pressed button 1');
+            $this->sendText('You pressed button 1');
             break;
         case 'BUTTON_2':
-            $this->sendText($msg->sender->id, 'You pressed button 2');
+            $this->sendText('You pressed button 2');
             break;
         default:
         endswitch;
