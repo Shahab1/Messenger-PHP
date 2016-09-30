@@ -81,8 +81,9 @@ class BotApp {
     } // checkValidation
 
 
-    public function getSession($key) {
+    public function getSession($key = '') {
 
+        if ($key == '') return $this->session;
         if (!isset($this->session[$key])) return null;
         return $this->session[$key];
 
