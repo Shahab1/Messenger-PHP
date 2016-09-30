@@ -186,7 +186,7 @@ class BotApp {
         if ($content instanceof Attachment):
             $obj->message->attachment = $content;
         else:
-            $obj->message->text = $text;
+            $obj->message->text = $content;
         endif;
         $obj->message->quick_replies = $quick_replies;
         $json = json_encode($obj);
