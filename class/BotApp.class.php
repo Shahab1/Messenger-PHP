@@ -118,7 +118,7 @@ class BotApp {
                             $this->log("Received TEXT: ".json_encode($msg));
                             $this->receivedMessage($msg);
                         elseif (isset($msg->message->attachments)):
-                            foreach ($message->attachments as $att):
+                            foreach ($msg->message->attachments as $att):
                                 switch ($att->type):
                                 case 'image':
                                     $this->log("Received IMAGE: ".$att->payload->url);
