@@ -47,8 +47,8 @@ class TestBot extends BotApp {
         $this->sendQuickReply(
             new Attachment('image', new Payload('http://example.com/image.jpg')),
             array(
-                new QuickReply('Option 1', 'OPT_1'),
-                new QuickReply('Option 2', 'OPT_2')
+                new QuickReply('text', 'Option 1', 'OPT_1'),
+                new QuickReply('text', 'Option 2', 'OPT_2')
             )
         );
 

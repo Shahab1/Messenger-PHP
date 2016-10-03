@@ -6,9 +6,12 @@ class QuickReply {
     public $title;
     public $payload;
 
-    public function __construct($title, $payload) {
-        $this->title = $title;
-        $this->payload = $payload;
+    public function __construct($type, $title, $payload) {
+        $this->content_type = $type;
+        if ($type != 'location'):
+            $this->title = $title;
+            $this->payload = $payload;
+        endif;
     } // __construct
 
 } // QuickReply
