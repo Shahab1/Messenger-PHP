@@ -137,7 +137,7 @@ class BotApp {
                                     $this->receivedFile($msg);
                                     break;
                                 case 'location':
-                                    $this->log("Received COORDINATES: ".$att->payload->coordinates['lat'].",".$att->payload->coordinates['long']);
+                                    $this->log("Received COORDINATES: ".$att->payload->coordinates->lat.",".$att->payload->coordinates->long);
                                     $this->receivedLocation($msg);
                                     break;
                                 endswitch;
