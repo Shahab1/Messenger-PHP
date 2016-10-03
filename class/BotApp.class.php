@@ -8,6 +8,7 @@ require 'GenericTemplate.class.php';
 // Elements
 require 'Element.class.php';
 require 'Button.class.php';
+require 'ShareButton.class.php';
 
 // Misc classes
 require 'Attachment.class.php';
