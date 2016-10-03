@@ -9,6 +9,7 @@ require 'GenericTemplate.class.php';
 require 'Element.class.php';
 require 'Button.class.php';
 require 'ShareButton.class.php';
+require 'CallButton.class.php';
 
 // Misc classes
 require 'Attachment.class.php';
