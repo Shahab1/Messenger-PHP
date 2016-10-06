@@ -6,7 +6,7 @@ class QuickReply {
     public $title;
     public $payload;
 
-    public function __construct($type, $title, $payload) {
+    public function __construct($type, $title = '', $payload = '') {
         $this->content_type = $type;
         if ($type != 'location'):
             $this->title = $title;
